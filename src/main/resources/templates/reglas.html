@@ -14,7 +14,6 @@
         <thead>
         <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
             <th scope="col">Fecha de inicio</th>
             <th scope="col">Fecha de fin</th>
             <th scope="col">Acciones</th>
@@ -22,9 +21,8 @@
         </thead>
         <tbody>
         <!-- Itera sobre la lista de reglas -->
-        <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle" th:each="regla : ${reglas}">
+        <tr th:each="regla : ${reglas}">
             <td th:text="${regla.nombre}"></td>
-            <td th:text="${regla.descripcion}"></td>
             <td th:text="${#dates.format(regla.fecha_inicio,'dd/MM/yyyy HH:mm:ss' )}"></td>
             <td th:text="${#dates.format(regla.fecha_fin,'dd/MM/yyyy HH:mm:ss' )}"></td>
             <td class="d-flex justify-content-evenly">
@@ -32,11 +30,41 @@
                 <a th:href="@{/reglas/{id}(id=${regla.id})}" class="btn btn-outline-danger" id="btn-delete">
                     ✕
                 </a>
+                <a type="button" class="btn btn-outline-info" data-bs-toggle="modal" th:data-bs-target="'#modal-' + ${regla.id}">
+                    👁
+                </a>
             </td>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="'modal-' + ${regla.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h3>Descripción</h3>
+                            <p th:text="${regla.descripcion}"></p>
+
+                            <h3>Script</h3>
+                            <p th:text="${regla.script}"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </tr>
 
         </tbody>
     </table>
+    </section>
 
+
+
+<script th:src="@{/js/codemirror.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom.js}"></script>
 </body>
 </html>
