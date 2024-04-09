@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/api")
 public class ReglasController {
 
     private final ReglasService reglasService;
@@ -20,19 +19,30 @@ public class ReglasController {
         this.reglasService = reglasService;
     }
 
-    @GetMapping("/reglas")
-    public List<ReglasDTO> listAllReglas(Model model){
+    @GetMapping("/")
+    public String listAllReglas(Model model){
         List<Reglas> reglasList = reglasService.listAllReglas();
         model.addAttribute("reglas", reglasList);
-        return
+        model.addAttribute("titlePage", "Reglas");
+        return  "reglas";
     }
 
-    @GetMapping("/reglas/{id}")
-    public ReglasDTO getReglasporId(@PathVariable Long id){
-        Reglas reglas = reglasService.getReglasporId(id);
-        return convertToDTO(reglas);
+    @GetMapping("/reglas")
+    public String crearReglas(Model model){
+//        Reglas reglas = new Reglas();
+//        model.addAttribute("reglas", reglas);
+        model.addAttribute("titlePage", "Nueva regla");
+        return "crear_reglas";
     }
 
+    @GetMapping("/reglas/editar/{id}")
+    public String getReglasporId(Model model){
+//        Reglas reglas = reglasService.getReglasporId(id);
+//        model.addAttribute("reglas", reglas);
+        model.addAttribute("titlePage", "Editar regla");
+        return "editar_regla";
+    }
+//
     @PostMapping("/reglas")
     public ReglasDTO guardarReglas(@RequestBody Reglas reglas){
         Reglas savedReglas = reglasService.guardarReglas(reglas);

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+>
+<head th:replace="~{layout :: head}"></head>
+<body>
+<nav th:replace="~{layout :: navbar}" class="nav"></nav>
+
+<section class="container mt-4 p-5">
+    <div class="row mb-3">
+        <h1>Reglas</h1>
+    </div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Fecha de inicio</th>
+            <th scope="col">Fecha de fin</th>
+            <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Itera sobre la lista de reglas -->
+        <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle" th:each="regla : ${reglas}">
+            <td th:text="${regla.nombre}"></td>
+            <td th:text="${regla.descripcion}"></td>
+            <td th:text="${#dates.format(regla.fecha_inicio,'dd/MM/yyyy HH:mm:ss' )}"></td>
+            <td th:text="${#dates.format(regla.fecha_fin,'dd/MM/yyyy HH:mm:ss' )}"></td>
+            <td class="d-flex justify-content-evenly">
+                <a th:href="@{/reglas/editar/{id}(id=${regla.id})}" class="btn btn-outline-warning " id="btn-edit">✎</a>
+                <a th:href="@{/reglas/{id}(id=${regla.id})}" class="btn btn-outline-danger" id="btn-delete">
+                    ✕
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</body>
+</html>
