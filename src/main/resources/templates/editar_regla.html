@@ -21,29 +21,32 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="#">
+                        <form th:action="@{/reglas}" th:object="${regla}" method="post">
                             <div class="row gy-3 gy-md-4 overflow-hidden justify-content-center">
+
+                                <input type="hidden" th:field="*{id}"/>
+
                                 <div class="col-12">
                                     <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+                                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre"  th:field="*{nombre}">
                                 </div>
                                 <div class="col-12">
                                     <label for="descripcion" class="form-label">Descripción</label>
-                                    <textarea class="form-control" name="descripcion" id="descripcion" aria-label="descripcion" placeholder="Descripción"></textarea>
+                                    <textarea class="form-control" name="descripcion" id="descripcion" aria-label="descripcion" placeholder="Descripción" th:field="*{descripcion}"></textarea>
                                 </div>
                                 <div class="row justify-content-between m-2">
                                 <div class="col-6">
                                     <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
-                                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio">
+                                    <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" th:field="*{fecha_inicio}">
                                 </div>
                                     <div class="col-6">
                                         <label for="fecha_fin" class="form-label">Fecha de finalización</label>
-                                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin">
+                                        <input type="date" class="form-control" id="fecha_fin" name="fecha_fin"  th:field="*{fecha_fin}">
                                     </div>
                                 </div>
                                     <div class="col-12">
                                         <label for="regla" class="form-label mb-2">Script</label>
-                                        <textarea class="form-control" id="regla" aria-label="regla"></textarea>
+                                        <textarea class="form-control" id="regla" aria-label="regla"  th:field="*{script}"></textarea>
                                     </div>
 
                                 <div class="col-6">
@@ -62,6 +65,6 @@
 
 <script th:src="@{/js/codemirror.min.js}"></script>
 
-<script type="text/javascript" th:src="@{/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom_crear_editar.js}"></script>
 </body>
 </html>

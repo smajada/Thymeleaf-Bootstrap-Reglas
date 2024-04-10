@@ -23,24 +23,24 @@
         <!-- Itera sobre la lista de reglas -->
         <tr th:each="regla : ${reglas}">
             <td th:text="${regla.nombre}"></td>
-            <td th:text="${#dates.format(regla.fecha_inicio,'dd/MM/yyyy HH:mm:ss' )}"></td>
-            <td th:text="${#dates.format(regla.fecha_fin,'dd/MM/yyyy HH:mm:ss' )}"></td>
+            <td th:text="${#dates.format(regla.fecha_inicio,'dd/MM/yyyy' )}"></td>
+            <td th:text="${#dates.format(regla.fecha_fin,'dd/MM/yyyy' )}"></td>
             <td class="d-flex justify-content-evenly">
+                <a type="button" class="btn btn-outline-info" id="btn-info" data-bs-toggle="modal" th:data-bs-target="'#modal-' + ${regla.id}">
+                    +
+                </a>
                 <a th:href="@{/reglas/editar/{id}(id=${regla.id})}" class="btn btn-outline-warning " id="btn-edit">✎</a>
                 <a th:href="@{/reglas/{id}(id=${regla.id})}" class="btn btn-outline-danger" id="btn-delete">
                     ✕
                 </a>
-                <a type="button" class="btn btn-outline-info" data-bs-toggle="modal" th:data-bs-target="'#modal-' + ${regla.id}">
-                    👁
-                </a>
             </td>
 
             <!-- Modal -->
-            <div class="modal fade" th:id="'modal-' + ${regla.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade" th:id="'modal-' + ${regla.id}" tabindex="-1" th:aria-labelledby="'masInfo-' + ${regla.id}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <h1 class="modal-title fs-5" th:id="'masInfo-' + ${regla.id}">Más información</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -48,7 +48,7 @@
                             <p th:text="${regla.descripcion}"></p>
 
                             <h3>Script</h3>
-                            <p th:text="${regla.script}"></p>
+                            <textarea class="form-control" th:id="'regla-'+${regla.id}" aria-label="regla"  th:text="${regla.script}"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -65,6 +65,6 @@
 
 
 <script th:src="@{/js/codemirror.min.js}"></script>
-<script type="text/javascript" th:src="@{/js/custom.js}"></script>
+<script type="text/javascript" th:src="@{/js/custom_index.js}"></script>
 </body>
 </html>

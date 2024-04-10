@@ -9,39 +9,41 @@
     --dark: #343a40;
 }
 
-/*body {*/
-/*    font-family: 'Roboto', sans-serif;*/
-/*    background-color: var(--light);*/
-/*}*/
+#btn-delete {
+    font-size: 1.1em;
 
-
-.bg-body-secondary{
-    background-color: var(--primary) !important;
-}
-
-#btn-delete :hover{
+    :hover {
     background-color: var(--danger);
 }
-
-#btn-edit :hover{
-    background-color: var(--warning);
 }
 
+#btn-edit {
+    font-size: 1.1em;
 
-.active-link {
-    position: relative;
+    :hover {
+        background-color: var(--warning);
+    }
 }
 
-.active-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px; /* Ajusta este valor según tu preferencia para el grosor del borde */
-    width: 100%;
-    height: 1px; /* Grosor del borde */
-    background-color: var(--dark); /* Color del borde */
+#btn-info {
+    font-size: 1.1em;
+
+    :hover {
+        background-color: var(--info);
+    }
 }
 
-.hiddenRow {
-    padding: 0 !important;
-}
+    .active-link {
+        position: relative;
+    }
+
+    .active-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px; /* Ajusta este valor según tu preferencia para el grosor del borde */
+        width: 100%;
+        height: 1px; /* Grosor del borde */
+        background-color: var(--dark); /* Color del borde */
+    }
+
